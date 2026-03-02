@@ -8,6 +8,17 @@
     <div>
       <div class="name">{{ u.name }}</div>
       <div class="muted">ID: {{ u._id }}</div>
+
+        <div>
+      {{ u.name }}
+    </div>
+
+    <button type="button"
+            class="btn"
+            (click)="editar(u)">
+      Editar
+    </button>
+
     </div>
 
     <div class="muted">
@@ -42,21 +53,6 @@
    
 
   </form>
-  <ul *ngIf="!loading && !errorMsg && usuarios.length > 0">
-  <li *ngFor="let u of usuarios; trackBy: trackById">
-
-    <div>
-      {{ u.name }}
-    </div>
-
-    <button type="button"
-            class="btn"
-            (click)="editar(u)">
-      Editar
-    </button>
-
-  </li>
-</ul>
 
 </div>
 <button type="button" class="btn" (click)="load()">Recargar</button>

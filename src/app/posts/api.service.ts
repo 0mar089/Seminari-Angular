@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Organizacion } from '../models/organizacion.model';
 import { Usuario } from '../models/usuario.model';
 import { environment } from '../../environments/environment';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,53 +16,71 @@ export class ApiService {
   // ORGANIZACIONES
   // =========================
 
-  getOrganizaciones(): Observable<{ organizaciones: Organizacion[] }> {
-    return this.http.get<{ organizaciones: Organizacion[] }>(
-      `${this.baseUrl}/organizaciones`
+  getOrganizaciones(): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/organizaciones/get`
     );
   }
 
-  getOrganizacionById(organizacionId: string): Observable<{ organizacion: Organizacion }> {
-    return this.http.get<{ organizacion: Organizacion }>(
-      `${this.baseUrl}/organizaciones/${organizacionId}`
+  getOrganizacionById(id: string): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/organizaciones/get/${id}`
     );
   }
 
   createOrganizacion(name: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/organizaciones`, { name });
+    return this.http.post(
+      `${this.baseUrl}/organizaciones/create`,
+      { name }
+    );
   }
 
-  updateOrganizacion(organizacionId: string, name: string): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/organizaciones/${organizacionId}`, { name });
+  updateOrganizacion(id: string, name: string): Observable<any> {
+    return this.http.patch(
+      `${this.baseUrl}/organizaciones/update/${id}`,
+      { name }
+    );
   }
 
-  deleteOrganizacion(organizacionId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/organizaciones/${organizacionId}`);
+  deleteOrganizacion(id: string): Observable<any> {
+    return this.http.delete(
+      `${this.baseUrl}/organizaciones/delete/${id}`
+    );
   }
 
   // =========================
   // USUARIOS
   // =========================
 
-  getUsuarios(): Observable<{ usuarios: Usuario[] }> {
-  return this.http.get<{ usuarios: Usuario[] }>(`${this.baseUrl}/usuarios`);
-}
+  getUsuarios(): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/usuarios/get`
+    );
+  }
 
-  getUsuarioById(usuarioId: string): Observable<{ usuario: Usuario }> {
-    return this.http.get<{ usuario: Usuario }>(
-      `${this.baseUrl}/usuarios/${usuarioId}`
+  getUsuarioById(id: string): Observable<any> {
+    return this.http.get(
+      `${this.baseUrl}/usuarios/get/${id}`
     );
   }
 
   createUsuario(name: string, organizacion: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/usuarios`, { name, organizacion });
+    return this.http.post(
+      `${this.baseUrl}/usuarios/create`,
+      { name, organizacion }
+    );
   }
 
-  updateUsuario(usuarioId: string, name: string, organizacion: string): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/usuarios/${usuarioId}`, { name, organizacion });
+  updateUsuario(id: string, name: string, organizacion: string): Observable<any> {
+    return this.http.patch(
+      `${this.baseUrl}/usuarios/update/${id}`,
+      { name, organizacion }
+    );
   }
 
-  deleteUsuario(usuarioId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/usuarios/${usuarioId}`);
+  deleteUsuario(id: string): Observable<any> {
+    return this.http.delete(
+      `${this.baseUrl}/usuarios/delete/${id}`
+    );
   }
 }
