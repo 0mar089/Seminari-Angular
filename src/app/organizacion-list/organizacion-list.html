@@ -38,12 +38,20 @@
     <div>
       <span class="muted">{{ org._id }}</span>
 
+      <!-- BOTÓN DETALLE -->
+      <button type="button"
+              class="btn detail-btn"
+              [routerLink]="['/organizacion', org._id]">
+        Ver Detalle
+      </button>
+
       <!-- BOTÓN EDITAR -->
       <button type="button"
               class="btn"
               (click)="editar(org)">
         Editar
       </button>
+
 
       <!-- BOTÓN ELIMINAR -->
       <button type="button"

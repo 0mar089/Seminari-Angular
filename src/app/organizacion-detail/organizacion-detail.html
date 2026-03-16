@@ -1,0 +1,49 @@
+<div class="detail-container">
+  <div class="header-row">
+    <button class="btn" routerLink="/">Volver</button>
+    <h2>Detalle Organización</h2>
+  </div>
+
+  <div *ngIf="loading" class="status-message">
+    <p>Cargando información...</p>
+  </div>
+
+  <div *ngIf="!loading && errorMsg" class="status-message">
+    <p>{{ errorMsg }}</p>
+  </div>
+
+  <div *ngIf="!loading && !errorMsg && organizacion">
+    <div class="card">
+      <strong>Nombre:</strong> {{ organizacion.name }} <br>
+      <span class="muted">ID: {{ organizacion._id }}</span>
+    </div>
+
+    <h3>Usuarios Vinculados</h3>
+    <div class="user-list">
+      <div class="user-item" *ngFor="let user of organizacion.usuarios">
+        <div class="user-info">
+          <span>{{ user.name }}</span>
+          <span class="muted">{{ user.email }}</span>
+        </div>
+        <button class="btn" (click)="desvincularUsuario(user._id)">Eliminar</button>
+      </div>
+      
+      <p class="empty-msg" *ngIf="!organizacion.usuarios || organizacion.usuarios.length === 0">
+        No hay usuarios vinculados.
+      </p>
+    </div>
+
+    <h3>Añadir Usuario</h3>
+    <div class="card">
+      <div class="sync-tool">
+        <select [(ngModel)]="selectedUsuarioId" name="selectedUser">
+          <option value="" disabled selected>Seleccionar...</option>
+          <option *ngFor="let u of allUsuarios" [value]="u._id">
+            {{ u.name }} ({{ u.email }})
+          </option>
+        </select>
+        <button class="btn" [disabled]="!selectedUsuarioId" (click)="vincularUsuario()">Vincular</button>
+      </div>
+    </div>
+  </div>
+</div>

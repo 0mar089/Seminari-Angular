@@ -5,15 +5,17 @@ import { Organizacion } from '../models/organizacion.model';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-organizacion-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, RouterModule],
   templateUrl: './organizacion-list.html',
   styleUrls: ['./organizacion-list.css'],
 })
+
 export class OrganizacionList implements OnInit {
   organizaciones: Organizacion[] = [];
   organizacionesFiltradas: Organizacion[] = [];

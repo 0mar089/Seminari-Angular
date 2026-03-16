@@ -43,10 +43,16 @@ export class UsuarioService {
   }
 
   //Función: actualizar usuario existente
-  updateUsuario(id: string, name: string, email: string, password: string, organizacion: string): Observable<Usuario> {
+  updateUsuario(id: string, name?: string, email?: string, password?: string, organizacion?: string): Observable<Usuario> {
+    const body: any = {};
+    if (name) body.name = name;
+    if (email) body.email = email;
+    if (password) body.password = password;
+    if (organizacion !== undefined) body.organizacion = organizacion;
+
     return this.http.put<Usuario>(
       `${this.baseUrl}/usuarios/${id}`,
-      { name, email, password, organizacion } 
+      body
     );
   }
 
