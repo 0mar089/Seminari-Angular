@@ -11,8 +11,8 @@ import { Organizacion } from '../models/organizacion.model';
 export class UsuarioService {
   private baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
-  
+  constructor(private http: HttpClient) { }
+
   //Función: obtener usuarios de la API
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(

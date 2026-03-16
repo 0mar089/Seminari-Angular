@@ -26,7 +26,7 @@ export class OrganizacionDetail implements OnInit {
     private orgApi: OrganizacionService,
     private userApi: UsuarioService,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
 
   ngOnInit(): void {
